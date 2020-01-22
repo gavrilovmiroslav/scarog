@@ -10,7 +10,7 @@ import org.lwjgl.glfw.GLFW._
 import org.lwjgl.system.MemoryStack._
 
 object Main {
-  def main(args: Array[String]) = Scarog.run
+  def main(args: Seq[String]) = Scarog.run
 }
 
 trait Actor {
