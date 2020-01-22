@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="lwjgl-egl">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/LWJGL/lwjgl-egl/lwjgl-egl.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/LWJGL/lwjgl-egl/lwjgl-egl-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/LWJGL/lwjgl-egl/lwjgl-egl-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
