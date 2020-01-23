@@ -13,10 +13,6 @@ object Main {
   def main(args: Array[String]) = Scarog.run
 }
 
-trait Actor {
-  def addTime(f: Float): Unit
-}
-
 object Scarog {
   type GLFWWindowContext = Long
 
@@ -75,24 +71,31 @@ object Scarog {
     Ok(window)
   }
 
-  def tick(): Unit = {
-    actors.foreach { _.addTime(1) }
-
-  }
-
   def loop(window: GLFWWindowContext): Log[String] = {
     GL.createCapabilities()
     glClearColor(0, 0, 0, 0)
 
     var tickRate: Long = 1000000000 / 60
     var gameTime = System.nanoTime()
+    var frameCounter = 0
 
     try {
       while (!glfwWindowShouldClose(window)) {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+        var currentTime = System.nanoTime()
+        if(currentTime - gameTime > 33 * 1000)
+          EventBus.post(new TickTimeEvent)
 
-        glfwSwapBuffers(window)
-        glfwPollEvents()
+        if(currentTime > gameTime + tickRate * 2)
+          gameTime = currentTime
+        else
+          gameTime += tickRate
+
+        while(System.nanoTime() < gameTime) Thread.`yield`()
+
+
+        // player stuff here
+        // consume key
+        // else others act
       }
     } catch {
       case e => return Error(e.getMessage)
